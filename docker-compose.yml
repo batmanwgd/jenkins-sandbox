@@ -1,0 +1,19 @@
+version: '3.2'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    volumes:
+    - ./jenkins/home:/var/jenkins_home
+    - ./.git:/repo.git
+    ports: [ '8080:8080' ]
+    networks: [ 'monorepo-net' ]
+
+  jenkins-worker:
+    image: docker:dind
+    privileged: true
+    volumes:
+    - ./.git:/repo.git
+    networks: [ 'monorepo-net' ]
+
+networks:
+  monorepo-net:
