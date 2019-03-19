@@ -70,3 +70,6 @@ modules/
 /jenkins.install.*
 /init.groovy.d/
 /hudson.*
+/plugins/
+/identity.key.enc
+/userContent
