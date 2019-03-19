@@ -19,7 +19,20 @@ services:
     - ./.git:/repo.git
     - /var/run/docker.soc:/var/run/docker.sock
     networks: [ 'monorepo-net' ]
-    command: 'tail -f /dev/null'
+    entrypoint: '/bin/bash -c'
+    command:
+    - |
+      while true; do
+        wget http://jenkins:8080/jnlpJars/agent.jar
+        if [ $$? = 0 ]; then break; fi;
+        sleep 7s;
+      done
+      CRUMB=$$(curl -u "jenkins:jenkins" 'http://jenkins:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)')
+      SECRET=$$(curl -L -s -u jenkins:jenkins -H "$${CRUMB}" -X GET http://jenkins:8080/computer/worker/slave-agent.jnlp \
+        | sed "s/.*<application-desc main-class=\"hudson.remoting.jnlp.Main\"><argument>\([a-z0-9]*\).*/\1/"
+      )
+      echo "Secret is: $${SECRET}"
+      java -jar agent.jar -jnlpUrl http://jenkins:8080/computer/worker/slave-agent.jnlp -secret $$SECRET -workDir "/tmp"
 
 networks:
   monorepo-net:

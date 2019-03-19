@@ -1,5 +1,5 @@
 FROM docker:dind
 
-RUN apk update && apk add openjdk8-jre nss bash git
+RUN apk update && apk add openjdk8-jre nss bash git curl
 
 # vim: set ft=dockerfile :  
