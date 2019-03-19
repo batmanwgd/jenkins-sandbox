@@ -2,9 +2,16 @@ scm-api:latest
 git-client:latest
 git:latest
 workflow-step-api:latest
+workflow-api:2.22
 credentials:latest
 workflow-scm-step:latest
 jsch:latest
 apache-httpcomponents-client-4-api:latest
 ssh-credentials:latest
 structs:latest
+mailer:1.23
+matrix-project:latest
+junit:1.27
+script-security:latest
+display-url-api:1.0
+
