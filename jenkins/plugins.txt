@@ -1,0 +1,10 @@
+scm-api:latest
+git-client:latest
+git:latest
+workflow-step-api:latest
+credentials:latest
+workflow-scm-step:latest
+jsch:latest
+apache-httpcomponents-client-4-api:latest
+ssh-credentials:latest
+structs:latest

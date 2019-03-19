@@ -1,7 +1,9 @@
 version: '3.2'
 services:
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      dockerfile: Dockerfile.jenkins
+      context: jenkins
     volumes:
     - ./jenkins/home:/var/jenkins_home
     - ./.git:/repo.git
@@ -9,10 +11,13 @@ services:
     networks: [ 'monorepo-net' ]
 
   jenkins-worker:
-    image: docker:dind
+    build:
+      dockerfile: Dockerfile.worker
+      context: jenkins
     privileged: true
     volumes:
     - ./.git:/repo.git
+    - /var/run/docker.soc:/var/run/docker.sock
     networks: [ 'monorepo-net' ]
     command: 'tail -f /dev/null'
 
