@@ -9,5 +9,5 @@ pipeline {
     }
 }
 
-# vim: set ft=groovy :  
+// vim: set ft=groovy :  
 
