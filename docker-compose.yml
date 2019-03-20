@@ -17,7 +17,7 @@ services:
     privileged: true
     volumes:
     - ./.git:/repo.git
-    - /var/run/docker.soc:/var/run/docker.sock
+    - /var/run/docker.sock:/var/run/docker.sock
     networks: [ 'monorepo-net' ]
     entrypoint: '/bin/bash -c'
     command:
