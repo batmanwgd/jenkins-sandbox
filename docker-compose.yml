@@ -14,7 +14,6 @@ services:
     build:
       dockerfile: Dockerfile.worker
       context: jenkins
-    privileged: true
     volumes:
     - ./.git:/repo.git
     - /var/run/docker.sock:/var/run/docker.sock
